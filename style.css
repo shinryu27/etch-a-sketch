@@ -1,0 +1,38 @@
+#grid {
+  display: flex; 
+  margin-top: 10px; 
+  flex-wrap: wrap; 
+  border: none; 
+  align-content: center; 
+  width: 456px; 
+  height: 456px; 
+  margin-bottom: 2vmin; 
+}
+
+.tile { 
+    display: flex; 
+    flex-wrap: wrap; 
+    justify-content: center; 
+    align-items: center; 
+    border: 1px solid black; 
+    width: 25px; 
+    height: 25px; 
+    text-align: center; 
+    margin: 0px; 
+    font-size: 5vmin; 
+  } 
+
+  #togglebtn { 
+    height: 5vmin; 
+    width: 12vmin; 
+    background: none; 
+    border-radius: 1vmin; 
+  } 
+  #togglebtn:hover { 
+    background-color: cyan; 
+    box-shadow: 0 0 12px cyan; 
+    cursor: pointer; 
+  } 
+  .hide { 
+    display: none; 
+  }
