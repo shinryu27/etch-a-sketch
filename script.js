@@ -1,33 +1,48 @@
-function id(id) { 
-	return document.getElementById(id); 
-} 
+let color = "black";
+function makeGrid(size) {
+  let board = document.querySelector('.board');
+  let tiles = board.querySelectorAll("div");
+  tiles.forEach((div)=>div.remove());
+  board.style.gridTemplateColumns = `repeat(${size}, 1fr)`;
+  board.style.gridTemplateRows = `repeat(${size}, 1fr)`;
 
-let count = 0; 
-let idcount = 0; 
+  let amount = size*size;
+  for(let i = 0; i<amount; i++) {
+    let tile = document.createElement('div');
+    tile.addEventListener("mouseover", colorSquare);
+    tile.style.backgroundColor = 'white';
+    board.insertAdjacentElement("beforeend", tile);
+  }
+};
 
-window.onload = () => { 
-	for (let i = 0; i < 256; i++) { 
+makeGrid(16);
 
-		// Create tile & gave it CSS of the 
-		// tile and then append it 
-		let tile = document.createElement("p"); 
-		tile.id = idcount; 
-		idcount++; 
-		tile.classList.add("tile"); 
-		tile.textContent = ""; 
-		// console.log(); 
-		id("grid").appendChild(tile); 
-	} 
+function changeSize(input) {
+  if (input >= 2 && input <= 100){
+    document.querySelector('.error').style.display = 'none';
+    makeGrid(input);
+  }
+  else {
+    document.querySelector('.error').style.display = 'flex';
+  }
+  
+};
 
-	// Grid will be displayed if setting 
-	// the display to none 
-	id("togglebtn").addEventListener("click", () => { 
-		if (count % 2 == 0) { 
-			id("grid").style.display = "none"; 
-			count++; 
-		} else { 
-			id("grid").style.display = "flex"; 
-			count++; 
-		} 
-	}); 
-}; 
+function colorSquare(){
+   if (color ===  'random') {
+    this.style.backgroundColor = `hsl(${Math.random()*360}, 100%, 50%)`;
+    } else {
+    this.style.backgroundColor = color;
+    }
+};
+
+function changeColor(choice){
+  color = choice
+};
+
+function resetBoard() {
+  let board = document.querySelector('.board');
+  let tiles = board.querySelectorAll("div");
+  tiles.forEach((div)=>div.style.backgroundColor = 'white');
+};
+
